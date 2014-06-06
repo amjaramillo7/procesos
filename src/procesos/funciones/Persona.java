@@ -1,16 +1,11 @@
 package procesos.funciones;
 
-import java.awt.Font;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Scanner;
-import javax.swing.JOptionPane;
+import java.io.OutputStreamWriter;
+import java.util.*;
 
 /**
  * @author amjaramillo7
@@ -20,70 +15,47 @@ public class Persona {
     /*
     * Creación e incialización de las variables
     */
-    public static String Nombres="Amys Madalaine";
-    public static String Apellidos="Jaramillo Rodriguez";
-    public static String Sexo="Femenino";
-    public static String NroTelefono="0997522391";
-    public static String Cedula="1104437619";
-    public static String Ciudad="Loja - Ecuador";
-    public static String Direccion="Ciudadela Zamora";
-    /*
-    * Variable Path, ruta donde se guardará el archivo de texto
-    */
-    public static String Path="D:\\DATOS\\Desktop\\datosPersona.txt";
     public static void main(String[] args) throws IOException {
-        int opc=0;
-        Scanner lector = new Scanner(System.in);
-        opc = Integer.parseInt(JOptionPane.showInputDialog("Ingresa una opción \n 1. Generar archivo \n 2. Leer archivo"));
-        switch(opc) {
-        case 1: 
-            writeFile();
-            break;
-        case 2: 
-            readFile();
-            break;
+        Scanner sc = new Scanner(System.in);  //crear un objeto Scanner
+        String Nombre_Completo;
+        String Apellidos;
+        String Cedula;
+        String Ciudad;
+        String Sexo;
+        String Direccion;
         
-        }
-    }
-    public static void writeFile() throws IOException{
-        File file = new File(Path); // Instanciamos la Clase File
-        if (!file.exists()) { //Solo si el archivo no existe se lo crea, caso contrario se presenta una alerta
-            BufferedWriter bw = new BufferedWriter(new FileWriter(Path)); //Creamos el archivo
-            /*
-            * Escribimos el cuerpo del texto que tendrá el archivo persona.txt
-            */
-            bw.write("Nombres:" + Nombres + "\n");
-            bw.write("Apellidos:" + Apellidos + "\n");
-            bw.write("Sexo:" + Sexo + "\n");
-            bw.write("NroTelefono:" + NroTelefono + "\n");
-            bw.write("Cedula:" + Cedula + "\n");
-            bw.write("Ciudad:" + Ciudad + "\n");
-            bw.write("Direccion:" + Direccion + "\n");
-            bw.close();
-            JOptionPane.showMessageDialog(null, "El archivo se a creado correctamente ...");
-        }else{
-            JOptionPane.showMessageDialog(null, "ERROR, El archivo ya se encuentra creado ...");
+        System.out.print("Nombre: ");
+        Nombre_Completo = sc.nextLine();  //leer un String
+
+        System.out.print("Apellido: ");
+        Apellidos = sc.nextLine();  //leer un String
+
+        System.out.print("Cedula: ");
+        Cedula = sc.nextLine();  //leer un String
         
-        }
+         System.out.print("Ciudad: ");
+        Ciudad = sc.nextLine();  //leer un String
+        
+        System.out.print("Sexo: ");
+        Sexo = sc.nextLine();  //leer un String
+        
+        System.out.print("Dirección: ");
+        Direccion = sc.nextLine();  //leer un String
+        
+        String datos = "Hola " + Nombre_Completo + " "+"este es el registro de tus datos ingresados:"+ "\r\n"+
+                       "Nombres Completos: "+Nombre_Completo+"\r\n"+
+                       "Apellidos: "+Apellidos+"\r\n"+
+                       "Cedula de ciudadania: "+Cedula+"\r\n"+
+                       "Ciudad de Origen: "+Ciudad+"\r\n"+
+                       "Sexo: "+Sexo+"\r\n"+Direccion+"\r\n";
+        writeFile(datos);
+        
     }
-    public static void readFile(){
-        BufferedReader br = null;
-		try {
-			String Line;
-			br = new BufferedReader(new FileReader(Path));
-			while ((Line = br.readLine()) != null) { //recorremos y presentamos el contenido del archivo de texto
-                            System.out.println(Line); // imprimimos cada linea del archivo
-			}
- 
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (br != null)br.close();
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			}
-		}
+    public static String Path = "D:\\DATOS\\Desktop\\DatosPersona.txt";
+    private static void writeFile(String datos) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+   
+    
 
 }
