@@ -52,8 +52,15 @@ public class Persona {
         
     }
     public static String Path = "D:\\DATOS\\Desktop\\DatosPersona.txt";
-    private static void writeFile(String datos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public static void writeFile(String valor) throws IOException {
+        File file = new File(Path); // Instanciamos la Clase File
+        if (!file.exists()) { //Solo si el archivo no existe se lo crea, caso contrario se presenta una alerta]
+            file.createNewFile();
+        }
+        BufferedWriter buffer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true), "utf-8"));
+        buffer.write(valor);
+        buffer.close();
     }
    
     
